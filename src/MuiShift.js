@@ -9,8 +9,8 @@ import MenuItem from '@material-ui/core/MenuItem'
 const _itemToString = item => (item || '')
 const _getSelectedItem = (input) => { return input ? input.value : '' }
 
-const _renderInput = (inputProps) => {
-  const { InputProps, classes, ref, isOpen, clearSelection, closeMenu, openMenu, selectedItem, ...other } = inputProps
+const _renderInput = (props) => {
+  const { InputProps, inputProps, classes, ref, isOpen, clearSelection, closeMenu, openMenu, selectedItem, ...other } = props
 
   return (
     <TextField
@@ -21,6 +21,7 @@ const _renderInput = (inputProps) => {
         },
         ...InputProps
       }}
+      {...inputProps}
       {...other}
     />
   )
@@ -69,7 +70,7 @@ const _renderMenu = ({ classes, filteredItems, renderSuggestion, getItemProps, h
 }
 
 export const MuiShift = (props) => {
-  const { input, placeholder, id, items, classes, getFilteredItems, renderSuggestion, renderInput, renderMenu, getSelectedItem, itemToString } = props
+  const { input, inputProps, id, items, classes, getFilteredItems, renderSuggestion, renderInput, renderMenu, getSelectedItem, itemToString } = props
 
   return (
     <Downshift
@@ -91,9 +92,8 @@ export const MuiShift = (props) => {
               closeMenu,
               openMenu,
               selectedItem,
+              inputProps,
               InputProps: getInputProps({
-                placeholder,
-                id,
                 name: input ? input.name : undefined,
                 onBlur: input ? input.onBlur : undefined
               })

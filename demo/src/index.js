@@ -13,6 +13,9 @@ class Demo extends Component {
         <MuiShift
           items={smallList}
           itemToString={item => item ? item.label : ''}
+          inputProps={
+            { label: 'label', placeholder: 'placeholder', helperText: 'helperText' }
+          }
         />
         <br />
         <Autocomplete
