@@ -9,7 +9,7 @@ class Demo extends Component {
       <h1>muishift Demo</h1>
       <MuiShift
         items={countries}
-        itemToString={item => item.name || ''}
+        itemToString={item => item ? item.name : ''}
       />
     </div>
   }

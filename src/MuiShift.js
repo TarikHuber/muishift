@@ -29,12 +29,12 @@ const _renderInput = (inputProps) => {
 const _renderSuggestion = ({ suggestion, index, itemProps, highlightedIndex, selectedItem, itemToString }) => {
   const isHighlighted = highlightedIndex === index
   const itemString = itemToString(suggestion) || ''
-  const isSelected = (selectedItem || '').indexOf(itemString) > -1
+  const isSelected = suggestion === suggestion
 
   return (
     <MenuItem
       {...itemProps}
-      key={itemString}
+      key={index}
       selected={isHighlighted}
       component='div'
       style={{
