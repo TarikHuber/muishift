@@ -1,6 +1,6 @@
 {
   "name": "muishift",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "muishift React component",
   "main": "lib/index.js",
   "module": "es/index.js",
