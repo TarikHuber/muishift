@@ -1,6 +1,6 @@
 {
   "name": "muishift",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "muishift React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -20,7 +20,13 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "react": "16.x"
+    "@material-ui/core": "1.x",
+    "@material-ui/icons": "1.x",
+    "downshift": "2.x",
+    "match-sorter": "2.x",
+    "react": "16.x",
+    "react-dom": "16.x",
+    "react-virtualized": "9.x"
   },
   "devDependencies": {
     "@material-ui/core": "^1.3.0",
@@ -35,8 +41,13 @@
   "author": "Tarik Huber",
   "homepage": "",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/TarikHuber/muishift",
   "keywords": [
-    "react-component"
+    "react-component",
+    "downshift",
+    "material-ui",
+    "selectfield",
+    "autocomplete",
+    "virtualized"
   ]
 }
