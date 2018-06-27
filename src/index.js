@@ -1,9 +1,7 @@
-import React, {Component} from 'react'
+import MuiShift from './MuiShift'
 
-export default class extends Component {
-  render() {
-    return <div>
-      <h2>Welcome to React components</h2>
-    </div>
-  }
-}
+import Autocomplete from './Autocomplete'
+import SelectField from './SelectField'
+import VirtualizedSelectField from './VirtualizedSelectField'
+
+export default MuiShift

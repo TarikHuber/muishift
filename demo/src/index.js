@@ -1,15 +1,18 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
-
-import Example from '../../src'
+import MuiShift from 'muishift'
+import React, { Component } from 'react'
+import countries from './countries'
+import { render } from 'react-dom'
 
 class Demo extends Component {
   render() {
     return <div>
       <h1>muishift Demo</h1>
-      <Example/>
+      <MuiShift
+        items={countries}
+        itemToString={item => item.name || ''}
+      />
     </div>
   }
 }
 
-render(<Demo/>, document.querySelector('#demo'))
+render(<Demo />, document.querySelector('#demo'))
