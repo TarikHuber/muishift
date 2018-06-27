@@ -123,7 +123,7 @@ const styles = theme => ({
     margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`
   },
   inputRoot: {
-    flexWrap: 'wrap'
+    //flexWrap: 'wrap'
   },
   closeButton: {
     width: 14,

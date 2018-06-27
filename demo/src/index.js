@@ -3,13 +3,14 @@ import React, { Component } from 'react'
 import bigList from './countries'
 import matchSorter from 'match-sorter'
 import smallList from './suggestions'
+import Toolbar from '@material-ui/core/Toolbar';
 import { render } from 'react-dom'
 
 class Demo extends Component {
   render() {
     return <div>
       <h1>muishift Demo</h1>
-      <div style={{ maxWidth: 400 }}>
+      <div style={{ maxWidth: 250 }}>
         <MuiShift
           items={smallList}
           itemToString={item => item ? item.label : ''}
@@ -26,6 +27,7 @@ class Demo extends Component {
         <SelectField
           items={smallList}
           itemToString={item => item ? item.label : ''}
+
         />
         <br />
         <VirtualizedSelectField
