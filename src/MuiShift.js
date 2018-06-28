@@ -126,13 +126,9 @@ const styles = theme => ({
     //flexWrap: 'wrap'
   },
   closeButton: {
-    width: 14,
     '&:hover': {
       color: theme.palette.secondary.main
     }
-  },
-  dropButton: {
-    width: 24
   }
 })
 

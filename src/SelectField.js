@@ -21,13 +21,14 @@ const renderInput = (inputProps) => {
         endAdornment: <InputAdornment position='end'>
           {!!selectedItem && <IconButton
             className={classes.closeButton}
+            style={{ width: 16 }}
             onClick={clearSelection}
             tabIndex={-1} >
             <Close style={{ fontSize: 16 }} />
           </IconButton>
           }
 
-          <IconButton className={classes.dropButton} onClick={isOpen ? closeMenu : openMenu} tabIndex={-1}>
+          <IconButton style={{ width: 24 }} onClick={isOpen ? closeMenu : openMenu} tabIndex={-1}>
             {isOpen ? <ArrowDropUp /> : <ArrowDropDown />}
           </IconButton>
         </InputAdornment>,
