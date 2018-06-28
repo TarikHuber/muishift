@@ -47,8 +47,11 @@ const _renderSuggestion = ({ suggestion, index, itemProps, highlightedIndex, sel
   )
 }
 
-const _getFilteredItems = ({ items, inputValue }) => {
-  return matchSorter(items, inputValue, {
+const _getFilteredItems = ({ items, inputValue, selectedItem, itemToString }) => {
+
+  const isTyping = itemToString(selectedItem) != inputValue
+
+  return !isTyping ? items : matchSorter(items, inputValue, {
     maxRanking: matchSorter.rankings.STARTS_WITH,
     keys: ['label']
   })
@@ -80,7 +83,7 @@ export const MuiShift = (props) => {
       {...props}
     >
       {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex, clearSelection, closeMenu, openMenu }) => {
-        const filteredItems = getFilteredItems({ items, inputValue })
+        const filteredItems = getFilteredItems({ items, inputValue, selectedItem, itemToString })
 
         return (
           <div className={classes.container}>
@@ -94,6 +97,7 @@ export const MuiShift = (props) => {
               selectedItem,
               inputProps,
               InputProps: getInputProps({
+                id,
                 name: input ? input.name : undefined,
                 onBlur: input ? input.onBlur : undefined
               })
