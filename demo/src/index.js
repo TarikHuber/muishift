@@ -11,8 +11,6 @@ class Demo extends Component {
 
   render() {
 
-    console.log(this.state)
-
     return <div>
       <h1>muishift Demo</h1>
       <div style={{ maxWidth: 250 }}>

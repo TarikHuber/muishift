@@ -39,7 +39,7 @@
     "react-virtualized": "^9.20.0"
   },
   "author": "Tarik Huber",
-  "homepage": "",
+  "homepage": "https://tarikhuber.github.io/muishift",
   "license": "MIT",
   "repository": "https://github.com/TarikHuber/muishift",
   "keywords": [
