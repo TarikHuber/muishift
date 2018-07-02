@@ -18,7 +18,7 @@ class Demo extends Component {
           items={smallList}
           itemToString={item => item ? item.label : ''}
           inputProps={
-            { label: 'label', placeholder: 'placeholder', helperText: 'helperText' }
+            { label: 'label', placeholder: 'placeholder', helperText: 'helperText', disabled: true }
           }
         />
         <br />
@@ -30,7 +30,9 @@ class Demo extends Component {
         <SelectField
           items={smallList}
           itemToString={item => item ? item.label : ''}
-
+          inputProps={
+            { label: 'label', placeholder: 'placeholder', helperText: 'helperText', disabled: true }
+          }
         />
         <br />
         <VirtualizedSelectField

@@ -7,8 +7,10 @@ import ArrowDropDown from '@material-ui/icons/ArrowDropDown'
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp'
 import Close from '@material-ui/icons/Close'
 
-const renderInput = (inputProps) => {
-  const { InputProps, classes, ref, isOpen, selectedItem, openMenu, closeMenu, clearSelection, ...other } = inputProps
+const renderInput = (props) => {
+  const { InputProps, inputProps, classes, ref, isOpen, selectedItem, openMenu, closeMenu, clearSelection, ...other } = props
+
+  const isDisabled = inputProps ? inputProps.disabled : undefined
 
   return (
     <TextField
@@ -20,6 +22,7 @@ const renderInput = (inputProps) => {
         },
         endAdornment: <InputAdornment position='end'>
           {!!selectedItem && <IconButton
+            disabled={isDisabled}
             className={classes.closeButton}
             style={{ width: 16 }}
             onClick={clearSelection}
@@ -28,12 +31,13 @@ const renderInput = (inputProps) => {
           </IconButton>
           }
 
-          <IconButton style={{ width: 24 }} onClick={isOpen ? closeMenu : openMenu} tabIndex={-1}>
+          <IconButton disabled={isDisabled} style={{ width: 24 }} onClick={isOpen ? closeMenu : openMenu} tabIndex={-1}>
             {isOpen ? <ArrowDropUp /> : <ArrowDropDown />}
           </IconButton>
         </InputAdornment>,
         ...InputProps
       }}
+      {...inputProps}
       {...other}
     />
   )
