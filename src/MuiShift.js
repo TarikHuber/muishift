@@ -14,6 +14,7 @@ const _renderInput = (props) => {
 
   return (
     <TextField
+      {...inputProps}
       InputProps={{
         inputRef: ref,
         classes: {
@@ -21,7 +22,6 @@ const _renderInput = (props) => {
         },
         ...InputProps
       }}
-      {...inputProps}
       {...other}
     />
   )

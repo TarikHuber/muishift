@@ -18,8 +18,9 @@ class Demo extends Component {
           items={smallList}
           itemToString={item => item ? item.label : ''}
           inputProps={
-            { label: 'label', placeholder: 'placeholder', helperText: 'helperText', disabled: true }
+            { label: 'label', placeholder: 'placeholder', helperText: 'helperText' }
           }
+          input={{ value: { label: 'Afganistan' } }}
         />
         <br />
         <Autocomplete
@@ -37,6 +38,7 @@ class Demo extends Component {
         <br />
         <VirtualizedSelectField
           items={bigList}
+          input={{ value: { code: 'af', name: 'Afghanistan' } }}
           getFilteredItems={({ items, inputValue }) => {
             return matchSorter(items, inputValue, {
               maxRanking: matchSorter.rankings.STARTS_WITH,

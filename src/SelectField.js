@@ -14,6 +14,7 @@ const renderInput = (props) => {
 
   return (
     <TextField
+      {...inputProps}
       InputProps={{
         inputRef: ref,
         onFocus: selectedItem ? undefined : openMenu,
@@ -37,7 +38,6 @@ const renderInput = (props) => {
         </InputAdornment>,
         ...InputProps
       }}
-      {...inputProps}
       {...other}
     />
   )
