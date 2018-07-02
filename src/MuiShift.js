@@ -14,7 +14,6 @@ const _renderInput = (props) => {
 
   return (
     <TextField
-      {...inputProps}
       InputProps={{
         inputRef: ref,
         classes: {
@@ -22,6 +21,7 @@ const _renderInput = (props) => {
         },
         ...InputProps
       }}
+      {...inputProps}
       {...other}
     />
   )
@@ -30,7 +30,7 @@ const _renderInput = (props) => {
 const _renderSuggestion = ({ suggestion, index, itemProps, highlightedIndex, selectedItem, itemToString }) => {
   const isHighlighted = highlightedIndex === index
   const itemString = itemToString(suggestion) || ''
-  const isSelected = suggestion === suggestion
+  const isSelected = suggestion === selectedItem
 
   return (
     <MenuItem
@@ -99,7 +99,6 @@ export const MuiShift = (props) => {
               InputProps: getInputProps({
                 id,
                 name: input ? input.name : undefined,
-                onBlur: input ? input.onBlur : undefined
               })
             })}
             {isOpen && !!filteredItems.length && renderMenu({ classes, filteredItems, renderSuggestion, getItemProps, highlightedIndex, selectedItem, itemToString })}

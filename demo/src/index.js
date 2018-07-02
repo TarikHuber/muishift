@@ -20,7 +20,8 @@ class Demo extends Component {
           inputProps={
             { label: 'label', placeholder: 'placeholder', helperText: 'helperText' }
           }
-          input={{ value: { label: 'Afganistan' } }}
+          onChange={(e) => { console.log(e) }}
+        //input={{ value: { label: 'Afganistan' } }}
         />
         <br />
         <Autocomplete
