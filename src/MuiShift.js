@@ -48,10 +48,18 @@ const _getFilteredItems = ({ rootProps, downshiftProps }) => {
   const { items, itemToString } = rootProps
   const { selectedItem, inputValue } = downshiftProps
   const isTyping = itemToString(selectedItem) !== inputValue
+  let keys = []
+
+  //By default we filter over all keys
+  if (items.length) {
+    Object.keys(items[0]).map(key => {
+      keys.push(key)
+    })
+  }
 
   return !isTyping ? items : matchSorter(items, inputValue, {
     maxRanking: matchSorter.rankings.STARTS_WITH,
-    keys: ['label']
+    keys
   })
 }
 

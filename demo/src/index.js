@@ -17,9 +17,7 @@ class Demo extends Component {
                 <MuiShift
                     items={smallList}
                     itemToString={item => item ? item.label : ''}
-                    inputProps={
-                        { label: 'label', placeholder: 'placeholder', helperText: 'helperText', fullWidth: false }
-                    }
+                    inputProps={{ label: 'label', placeholder: 'placeholder', helperText: 'helperText', fullWidth: false }}
                     onChange={(e) => { console.log(e) }}
                 //input={{ value: { label: 'Afganistan' } }}
                 />
@@ -32,23 +30,12 @@ class Demo extends Component {
                 <SelectField
                     items={smallList}
                     itemToString={item => item ? item.label : ''}
-                    inputProps={
-                        { label: 'label', placeholder: 'placeholder', helperText: 'helperText', disabled: true, fullWidth: false }
-                    }
+                    inputProps={{ label: 'label', placeholder: 'placeholder', helperText: 'helperText', disabled: true, fullWidth: false }}
                 />
                 <br />
                 <VirtualizedSelectField
                     items={bigList}
                     input={{ value: { code: 'af', name: 'Afghanistan' } }}
-                    getFilteredItems={({ rootProps, downshiftProps }) => {
-                        const { items } = rootProps
-                        const { inputValue } = downshiftProps
-
-                        return matchSorter(items, inputValue, {
-                            maxRanking: matchSorter.rankings.STARTS_WITH,
-                            keys: ['name', 'code']
-                        })
-                    }}
                     itemToString={item => item ? item.name : ''}
                 />
                 <br />
