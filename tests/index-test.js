@@ -15,9 +15,9 @@ describe('Component', () => {
     unmountComponentAtNode(node)
   })
 
-  it('displays a welcome message', () => {
-    render(<Component />, node, () => {
-      expect(node.innerHTML).toContain('combobox')
+  it('renders component', () => {
+    render(<Component items={[]} />, node, () => {
+      expect(node.innerHTML).toContain('input')
     })
   })
 })
