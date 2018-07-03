@@ -2,7 +2,10 @@ import React from 'react'
 import SelectField from './SelectField'
 import { List, AutoSizer } from 'react-virtualized'
 
-const renderMenu = ({ classes, filteredItems, renderSuggestion, getItemProps, highlightedIndex, selectedItem, itemToString }) => {
+const renderMenu = ({ rootProps, downshiftProps, filteredItems }) => {
+  const { renderSuggestion } = rootProps
+  const { highlightedIndex } = downshiftProps
+
   return <AutoSizer>{({ width }) => (
     <List
       width={width}
@@ -13,16 +16,13 @@ const renderMenu = ({ classes, filteredItems, renderSuggestion, getItemProps, hi
       rowRenderer={
         ({ key, index, style }) => <div
           key={key}
-          component='div'
           style={{ ...style }}
         >
           {renderSuggestion({
+            rootProps,
+            downshiftProps,
             suggestion: filteredItems[index],
-            index,
-            itemProps: getItemProps({ item: filteredItems[index] }),
-            highlightedIndex,
-            selectedItem,
-            itemToString
+            index
           })}
         </div>
       }

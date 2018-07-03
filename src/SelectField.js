@@ -8,14 +8,15 @@ import ArrowDropUp from '@material-ui/icons/ArrowDropUp'
 import Close from '@material-ui/icons/Close'
 
 const renderInput = (props) => {
-  const { InputProps, inputProps, classes, ref, isOpen, selectedItem, openMenu, closeMenu, clearSelection, ...other } = props
-
+  const { downshiftProps, rootProps } = props
+  const { getInputProps, isOpen, selectedItem, openMenu, closeMenu, clearSelection } = downshiftProps
+  const { inputProps, classes } = rootProps
   const isDisabled = inputProps ? inputProps.disabled : undefined
+  const InputProps = getInputProps()
 
   return (
     <TextField
       InputProps={{
-        inputRef: ref,
         onFocus: selectedItem ? undefined : openMenu,
         classes: {
           root: classes.inputRoot
@@ -38,7 +39,6 @@ const renderInput = (props) => {
         ...InputProps
       }}
       {...inputProps}
-      {...other}
     />
   )
 }

@@ -7,27 +7,25 @@ import Paper from '@material-ui/core/Paper'
 import MenuItem from '@material-ui/core/MenuItem'
 
 const _itemToString = item => (item || '')
+
 const _getSelectedItem = (input) => { return input ? input.value : '' }
 
-const _renderInput = (props) => {
-  const { InputProps, inputProps, classes, ref, isOpen, clearSelection, closeMenu, openMenu, selectedItem, ...other } = props
+const _renderInput = ({ rootProps, downshiftProps }) => {
+  const { getInputProps } = downshiftProps
+  const { inputProps } = rootProps
 
   return (
     <TextField
-      InputProps={{
-        inputRef: ref,
-        classes: {
-          root: classes.inputRoot
-        },
-        ...InputProps
-      }}
+      InputProps={{ ...getInputProps() }}
       {...inputProps}
-      {...other}
     />
   )
 }
 
-const _renderSuggestion = ({ suggestion, index, itemProps, highlightedIndex, selectedItem, itemToString }) => {
+const _renderSuggestion = ({ rootProps, downshiftProps, suggestion, index }) => {
+  const { itemToString } = rootProps
+  const { highlightedIndex, getItemProps, selectedItem } = downshiftProps
+  const itemProps = getItemProps({ item: suggestion })
   const isHighlighted = highlightedIndex === index
   const itemString = itemToString(suggestion) || ''
   const isSelected = suggestion === selectedItem
@@ -37,7 +35,6 @@ const _renderSuggestion = ({ suggestion, index, itemProps, highlightedIndex, sel
       {...itemProps}
       key={index}
       selected={isHighlighted}
-      component='div'
       style={{
         fontWeight: isSelected ? 500 : 400
       }}
@@ -47,9 +44,10 @@ const _renderSuggestion = ({ suggestion, index, itemProps, highlightedIndex, sel
   )
 }
 
-const _getFilteredItems = ({ items, inputValue, selectedItem, itemToString }) => {
-
-  const isTyping = itemToString(selectedItem) != inputValue
+const _getFilteredItems = ({ rootProps, downshiftProps }) => {
+  const { items, itemToString } = rootProps
+  const { selectedItem, inputValue } = downshiftProps
+  const isTyping = itemToString(selectedItem) !== inputValue
 
   return !isTyping ? items : matchSorter(items, inputValue, {
     maxRanking: matchSorter.rankings.STARTS_WITH,
@@ -57,51 +55,39 @@ const _getFilteredItems = ({ items, inputValue, selectedItem, itemToString }) =>
   })
 }
 
-const _renderMenu = ({ classes, filteredItems, renderSuggestion, getItemProps, highlightedIndex, selectedItem, itemToString }) => {
+const _renderMenu = ({ rootProps, downshiftProps, filteredItems }) => {
+  const { classes, renderSuggestion } = rootProps
+
   return <Paper className={classes.paper} square>
     {filteredItems.map((suggestion, index) =>
       renderSuggestion({
+        rootProps,
+        downshiftProps,
         suggestion,
-        index,
-        itemProps: getItemProps({ item: suggestion }),
-        highlightedIndex,
-        selectedItem,
-        itemToString
+        index
       })
     )}
   </Paper>
 }
 
-export const MuiShift = (props) => {
-  const { input, inputProps, id, items, classes, getFilteredItems, renderSuggestion, renderInput, renderMenu, getSelectedItem, itemToString } = props
+export const MuiShift = (rootProps) => {
+  const { input, classes, getFilteredItems, renderInput, renderMenu, itemToString } = rootProps
 
   return (
     <Downshift
       {...input}
       itemToString={itemToString}
       selectedItem={input ? input.value : undefined}
-      {...props}
+      {...rootProps}
     >
-      {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex, clearSelection, closeMenu, openMenu }) => {
-        const filteredItems = getFilteredItems({ items, inputValue, selectedItem, itemToString })
+      {downshiftProps => {
+        const { isOpen } = downshiftProps
+        const filteredItems = getFilteredItems({ rootProps, downshiftProps })
 
         return (
           <div className={classes.container}>
-            {renderInput({
-              fullWidth: true,
-              classes,
-              isOpen,
-              clearSelection,
-              closeMenu,
-              openMenu,
-              selectedItem,
-              inputProps,
-              InputProps: getInputProps({
-                id,
-                name: input ? input.name : undefined,
-              })
-            })}
-            {isOpen && !!filteredItems.length && renderMenu({ classes, filteredItems, renderSuggestion, getItemProps, highlightedIndex, selectedItem, itemToString })}
+            {renderInput({ rootProps, downshiftProps })}
+            {isOpen && !!filteredItems.length && renderMenu({ rootProps, downshiftProps, filteredItems })}
           </div>
         )
       }}
@@ -124,9 +110,6 @@ const styles = theme => ({
   },
   chip: {
     margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`
-  },
-  inputRoot: {
-    //flexWrap: 'wrap'
   },
   closeButton: {
     '&:hover': {
