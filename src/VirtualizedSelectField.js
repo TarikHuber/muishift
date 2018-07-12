@@ -1,37 +1,39 @@
 import React from 'react'
 import SelectField from './SelectField'
 import { List, AutoSizer } from 'react-virtualized'
-
+import Paper from '@material-ui/core/Paper'
 
 const VirtualizedSelectField = (props) => {
 
   const renderMenu = ({ rootProps, downshiftProps, filteredItems }) => {
     const { height, rowHeight } = props
-    const { renderSuggestion } = rootProps
+    const { classes, renderSuggestion } = rootProps
     const { highlightedIndex } = downshiftProps
 
     return <AutoSizer>{({ width }) => (
-      <List
-        width={width}
-        scrollToIndex={highlightedIndex || 0}
-        height={height}
-        rowCount={filteredItems.length}
-        rowHeight={rowHeight}
-        rowRenderer={
-          ({ key, index, style }) => <div
-            key={key}
-            style={{ ...style }}
-          >
-            {renderSuggestion({
-              rootProps,
-              downshiftProps,
-              suggestion: filteredItems[index],
-              index
-            })}
-          </div>
-        }
-
-      />)}
+      <Paper className={classes.paper} style={{ width }} square>
+        <List
+          width={width}
+          scrollToIndex={highlightedIndex || 0}
+          height={height}
+          rowCount={filteredItems.length}
+          rowHeight={rowHeight}
+          rowRenderer={
+            ({ key, index, style }) => <div
+              key={key}
+              style={{ ...style }}
+            >
+              {renderSuggestion({
+                rootProps,
+                downshiftProps,
+                suggestion: filteredItems[index],
+                index
+              })}
+            </div>
+          }
+        />
+      </Paper>
+    )}
     </AutoSizer>
   }
 

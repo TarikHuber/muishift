@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Paper from '@material-ui/core/Paper'
 import MenuItem from '@material-ui/core/MenuItem'
+import zIndex from '@material-ui/core/styles/zIndex'
 
 const _itemToString = item => (item || '')
 
@@ -54,6 +55,7 @@ const _getFilteredItems = ({ rootProps, downshiftProps }) => {
   if (items.length) {
     Object.keys(items[0]).map(key => {
       keys.push(key)
+      return key
     })
   }
 
@@ -107,14 +109,14 @@ const styles = theme => ({
 
   container: {
     flexGrow: 1,
-    position: 'relative'
+    position: 'relative',
   },
   paper: {
     position: 'absolute',
-    zIndex: 1,
     marginTop: theme.spacing.unit,
     left: 0,
-    right: 0
+    right: 0,
+    zIndex: zIndex.modal
   },
   chip: {
     margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`
