@@ -1,6 +1,7 @@
 import MuiShift, { Autocomplete, SelectField, VirtualizedSelectField } from 'muishift'
 import React, { Component } from 'react'
-import Toolbar from '@material-ui/core/Toolbar';
+import Toolbar from '@material-ui/core/Toolbar'
+import TextField from '@material-ui/core/TextField'
 import bigList from './countries'
 import matchSorter from 'match-sorter'
 import smallList from './suggestions'
@@ -22,7 +23,13 @@ class Demo extends Component {
         //input={{ value: { label: 'Afganistan' } }}
         />
         <br />
+        <TextField
+          style={{ width: 200 }}
+          placeholder='TextField'
+        />
+        <br />
         <Autocomplete
+          inputProps={{ style: { width: 200 } }}
           items={smallList}
           itemToString={item => item ? item.label : ''}
         />
@@ -30,10 +37,17 @@ class Demo extends Component {
         <SelectField
           items={smallList}
           itemToString={item => item ? item.label : ''}
-          inputProps={{ label: 'label', placeholder: 'placeholder', helperText: 'helperText', disabled: true, fullWidth: false }}
+          inputProps={{ label: 'label', placeholder: 'placeholder', helperText: 'helperText', disabled: true, fullWidth: false, style: { width: 50 } }}
+        />
+        <br />
+        <SelectField
+          items={smallList}
+          itemToString={item => item ? item.label : ''}
+          inputProps={{ label: 'label', placeholder: 'placeholder', helperText: 'helperText', disabled: false, style: { width: 50 } }}
         />
         <br />
         <VirtualizedSelectField
+          inputProps={{ style: { width: 200 } }}
           items={bigList}
           //input={{ value: { code: 'af', name: 'Afghanistan' } }}
           itemToString={item => item ? item.name : ''}
