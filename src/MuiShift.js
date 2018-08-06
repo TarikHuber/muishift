@@ -23,6 +23,11 @@ const _renderInput = ({ rootProps, downshiftProps }) => {
   )
 }
 
+const _matchSorterProps = {
+  maxRanking: matchSorter.rankings.STARTS_WITH
+}
+
+
 const _renderSuggestion = ({ rootProps, downshiftProps, suggestion, index }) => {
   const { itemToString } = rootProps
   const { highlightedIndex, getItemProps, selectedItem } = downshiftProps
@@ -46,7 +51,7 @@ const _renderSuggestion = ({ rootProps, downshiftProps, suggestion, index }) => 
 }
 
 const _getFilteredItems = ({ rootProps, downshiftProps }) => {
-  const { items, itemToString } = rootProps
+  const { items, itemToString, matchSorterProps } = rootProps
   const { selectedItem, inputValue } = downshiftProps
   const isTyping = itemToString(selectedItem) !== inputValue
   let keys = []
@@ -60,8 +65,8 @@ const _getFilteredItems = ({ rootProps, downshiftProps }) => {
   }
 
   return !isTyping ? items : matchSorter(items, inputValue, {
-    maxRanking: matchSorter.rankings.STARTS_WITH,
-    keys
+    keys,
+    ...matchSorterProps
   })
 }
 
@@ -134,7 +139,8 @@ MuiShift.defaultProps = {
   renderSuggestion: _renderSuggestion,
   renderInput: _renderInput,
   itemToString: _itemToString,
-  renderMenu: _renderMenu
+  renderMenu: _renderMenu,
+  matchSorterProps: _matchSorterProps
 }
 
 export default withStyles(styles)(MuiShift)

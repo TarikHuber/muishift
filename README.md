@@ -16,6 +16,7 @@ Property | Type | Required | Description
 `renderSuggestion ` | Function |  | Functions to render single Suggestion
 `getFilteredItems ` | Function |  | Functions to get filtered items
 `renderMenu ` | Function |  | Functions to render Menu 
+`matchSorterProps ` | Object |  | Properties for the matchSorter
 `inputProps ` | Object |  | inputProps that will be spread into the TextField of the default Input 
 all `downshift` props |  |  | all props that can be send to `downshift`
 
