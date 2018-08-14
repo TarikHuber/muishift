@@ -50,19 +50,27 @@ const _renderSuggestion = ({ rootProps, downshiftProps, suggestion, index }) => 
   )
 }
 
+const _getKeys = (obj, prefix) => {
+  let keys = []
+
+  Object.keys(obj).forEach(key => {
+    if (typeof obj[key] === 'object') {
+      keys = keys.concat(getKeys(obj[key], prefix != null ? `${prefix}.${key}` : key))
+    }
+    keys.push(prefix != null ? `${prefix}.${key}` : key)
+  })
+
+  return keys
+}
+
 const _getFilteredItems = ({ rootProps, downshiftProps }) => {
   const { items, itemToString, matchSorterProps } = rootProps
   const { selectedItem, inputValue } = downshiftProps
   const isTyping = itemToString(selectedItem) !== inputValue
   let keys = []
 
-  //By default we filter over all keys
-  if (items.length) {
-    Object.keys(items[0]).map(key => {
-      keys.push(key)
-      return key
-    })
-  }
+  //gets keys recusively
+  keys = _getKeys(items[0])
 
   return !isTyping ? items : matchSorter(items, inputValue, {
     keys,
