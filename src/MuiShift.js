@@ -55,7 +55,7 @@ const _getKeys = (obj, prefix) => {
 
   Object.keys(obj).forEach(key => {
     if (typeof obj[key] === 'object') {
-      keys = keys.concat(getKeys(obj[key], prefix != null ? `${prefix}.${key}` : key))
+      keys = keys.concat(_getKeys(obj[key], prefix != null ? `${prefix}.${key}` : key))
     }
     keys.push(prefix != null ? `${prefix}.${key}` : key)
   })
@@ -70,7 +70,9 @@ const _getFilteredItems = ({ rootProps, downshiftProps }) => {
   let keys = []
 
   //gets keys recusively
-  keys = _getKeys(items[0])
+  if (items.length) {
+    keys = _getKeys(items[0])
+  }
 
   return !isTyping ? items : matchSorter(items, inputValue, {
     keys,
