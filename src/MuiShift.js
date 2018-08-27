@@ -52,6 +52,7 @@ const _renderSuggestion = ({ rootProps, downshiftProps, suggestion, index }) => 
 
 const _getKeys = (obj, prefix) => {
   let keys = []
+  if (obj == null || typeof obj !== 'object') return keys
 
   Object.keys(obj).forEach(key => {
     if (typeof obj[key] === 'object') {
@@ -70,7 +71,7 @@ const _getFilteredItems = ({ rootProps, downshiftProps }) => {
   let keys = []
 
   //gets keys recusively
-  if (items.length) {
+  if (items != null && items.length) {
     keys = _getKeys(items[0])
   }
 
