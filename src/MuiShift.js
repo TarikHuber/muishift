@@ -71,17 +71,15 @@ const _getFilteredItems = ({ rootProps, downshiftProps }) => {
     keys = _getKeys(items[0])
   }
 
-  if (isTyping) {
-    if (keys.length) {
-      return matchSorter(items, inputValue, {
-        keys,
-        ...matchSorterProps
-      })
-    } else {
-      return matchSorter(items, inputValue, {
-        ...matchSorterProps
-      })
-    }
+  if (keys.length && isTyping) {
+    return matchSorter(items, inputValue, {
+      keys,
+      ...matchSorterProps
+    })
+  } else {
+    return matchSorter(items, inputValue, {
+      ...matchSorterProps
+    })
   }
 
   return items

@@ -37,8 +37,6 @@ class Demo extends Component {
             inputProps={{ style: { width: 200 }, label: 'free autocomplete' }}
             items={smallList.map(i => i.label)}
             itemToString={item => (item ? item : '')}
-            onChange={e => this.setState({ value: e })}
-            input={{ value: this.state.value }}
           />
           <br />
           <SelectField
