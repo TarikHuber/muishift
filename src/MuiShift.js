@@ -7,26 +7,22 @@ import Paper from '@material-ui/core/Paper'
 import MenuItem from '@material-ui/core/MenuItem'
 import zIndex from '@material-ui/core/styles/zIndex'
 
-const _itemToString = item => (item || '')
+const _itemToString = item => item || ''
 
-const _getSelectedItem = (input) => { return input ? input.value : '' }
+const _getSelectedItem = input => {
+  return input ? input.value : ''
+}
 
 const _renderInput = ({ rootProps, downshiftProps }) => {
   const { getInputProps } = downshiftProps
   const { inputProps } = rootProps
 
-  return (
-    <TextField
-      InputProps={{ ...getInputProps() }}
-      {...inputProps}
-    />
-  )
+  return <TextField InputProps={{ ...getInputProps() }} {...inputProps} />
 }
 
 const _matchSorterProps = {
   maxRanking: matchSorter.rankings.STARTS_WITH
 }
-
 
 const _renderSuggestion = ({ rootProps, downshiftProps, suggestion, index }) => {
   const { itemToString } = rootProps
@@ -75,37 +71,44 @@ const _getFilteredItems = ({ rootProps, downshiftProps }) => {
     keys = _getKeys(items[0])
   }
 
-  return !isTyping ? items : matchSorter(items, inputValue, {
-    keys,
-    ...matchSorterProps
-  })
+  if (isTyping) {
+    if (keys.length) {
+      return matchSorter(items, inputValue, {
+        keys,
+        ...matchSorterProps
+      })
+    } else {
+      return matchSorter(items, inputValue, {
+        ...matchSorterProps
+      })
+    }
+  }
+
+  return items
 }
 
 const _renderMenu = ({ rootProps, downshiftProps, filteredItems }) => {
   const { classes, renderSuggestion } = rootProps
 
-  return <Paper className={classes.paper} square>
-    {filteredItems.map((suggestion, index) =>
-      renderSuggestion({
-        rootProps,
-        downshiftProps,
-        suggestion,
-        index
-      })
-    )}
-  </Paper>
+  return (
+    <Paper className={classes.paper} square>
+      {filteredItems.map((suggestion, index) =>
+        renderSuggestion({
+          rootProps,
+          downshiftProps,
+          suggestion,
+          index
+        })
+      )}
+    </Paper>
+  )
 }
 
-export const MuiShift = (rootProps) => {
+export const MuiShift = rootProps => {
   const { input, classes, getFilteredItems, renderInput, renderMenu, itemToString } = rootProps
 
   return (
-    <Downshift
-      {...input}
-      itemToString={itemToString}
-      selectedItem={input ? input.value : undefined}
-      {...rootProps}
-    >
+    <Downshift {...input} itemToString={itemToString} selectedItem={input ? input.value : undefined} {...rootProps}>
       {downshiftProps => {
         const { isOpen } = downshiftProps
         const filteredItems = getFilteredItems({ rootProps, downshiftProps })
@@ -122,10 +125,9 @@ export const MuiShift = (rootProps) => {
 }
 
 const styles = theme => ({
-
   container: {
     flexGrow: 1,
-    position: 'relative',
+    position: 'relative'
   },
   paper: {
     position: 'absolute',
