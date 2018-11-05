@@ -1,4 +1,4 @@
-import MuiShift, { Autocomplete, SelectField, VirtualizedSelectField } from 'muishift'
+import MuiShift, { Autocomplete, SelectField, VirtualizedSelectField, FreeAutocomplete } from 'muishift'
 import React, { Component } from 'react'
 import Toolbar from '@material-ui/core/Toolbar'
 import TextField from '@material-ui/core/TextField'
@@ -8,7 +8,7 @@ import smallList from './suggestions'
 import { render } from 'react-dom'
 
 class Demo extends Component {
-  state = { value: { label: 'Afganistan' } }
+  state = { value: 'test' }
 
   render() {
     return (
@@ -31,14 +31,14 @@ class Demo extends Component {
             inputProps={{ style: { width: 200 } }}
             items={smallList}
             itemToString={item => (item ? item.label : '')}
-            onChange={e => this.setState({ value: e })}
-            input={{ value: this.state.value }}
           />
           <br />
-          <Autocomplete
+          <FreeAutocomplete
             inputProps={{ style: { width: 200 }, label: 'free autocomplete' }}
             items={smallList.map(i => i.label)}
             itemToString={item => (item ? item : '')}
+            onChange={e => this.setState({ value: e })}
+            input={{ value: this.state.value }}
           />
           <br />
           <SelectField
