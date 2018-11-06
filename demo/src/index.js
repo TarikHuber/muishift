@@ -64,10 +64,10 @@ class Demo extends Component {
             }}
           />
           <br />
-          <VirtualizedSelectField
+          <SelectField
             inputProps={{ style: { width: 200 } }}
             items={bigList}
-            //input={{ value: { code: 'af', name: 'Afghanistan' } }}
+            input={{ value: { code: 'af', name: 'Afghanistan' } }}
             itemToString={item => (item ? item.name : '')}
           />
           <br />
