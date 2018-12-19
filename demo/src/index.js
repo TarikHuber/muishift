@@ -60,7 +60,7 @@ class Demo extends Component {
               placeholder: 'placeholder',
               helperText: 'helperText',
               disabled: false,
-              style: { width: 50 }
+              style: { width: 200 }
             }}
           />
           <br />
