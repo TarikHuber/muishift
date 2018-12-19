@@ -71,6 +71,14 @@ class Demo extends Component {
             itemToString={item => (item ? item.name : '')}
           />
           <br />
+          <VirtualizedSelectField
+            inputProps={{ style: { width: 200 } }}
+            items={bigList}
+            input={{ value: { code: 'af', name: 'Afghanistan' } }}
+            itemToString={item => (item ? item.name : '')}
+            onChange={e => console.log(e)}
+          />
+          <br />
         </div>
       </div>
     )
