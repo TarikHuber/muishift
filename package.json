@@ -20,10 +20,10 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@material-ui/core": "1.x",
-    "@material-ui/icons": "1.x",
-    "downshift": "2.x",
-    "match-sorter": "2.x",
+    "@material-ui/core": "3.x",
+    "@material-ui/icons": "3.x",
+    "downshift": "3.x",
+    "match-sorter": "3.x",
     "react": "16.x",
     "react-dom": "16.x",
     "react-virtualized": "9.x"
