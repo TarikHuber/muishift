@@ -1,7 +1,7 @@
 import MuiShift, { Autocomplete, SelectField, VirtualizedSelectField, FreeAutocomplete } from 'muishift'
 import React, { Component } from 'react'
-import Toolbar from '@material-ui/core/Toolbar'
 import TextField from '@material-ui/core/TextField'
+import Toolbar from '@material-ui/core/Toolbar'
 import bigList from './countries'
 import matchSorter from 'match-sorter'
 import smallList from './suggestions'
