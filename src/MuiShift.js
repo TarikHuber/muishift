@@ -1,11 +1,11 @@
 import Downshift from 'downshift'
-import React from 'react'
-import matchSorter from 'match-sorter'
-import { withStyles } from '@material-ui/core/styles'
-import TextField from '@material-ui/core/TextField'
-import Paper from '@material-ui/core/Paper'
 import MenuItem from '@material-ui/core/MenuItem'
+import Paper from '@material-ui/core/Paper'
+import React from 'react'
+import TextField from '@material-ui/core/TextField'
+import matchSorter from 'match-sorter'
 import zIndex from '@material-ui/core/styles/zIndex'
+import { withStyles } from '@material-ui/core/styles'
 
 const _itemToString = item => item || ''
 

@@ -1,7 +1,7 @@
+import Paper from '@material-ui/core/Paper'
 import React from 'react'
 import SelectField from './SelectField'
 import { List, AutoSizer } from 'react-virtualized'
-import Paper from '@material-ui/core/Paper'
 
 const VirtualizedSelectField = (props) => {
 

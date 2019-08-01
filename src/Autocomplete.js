@@ -1,5 +1,5 @@
-import React from 'react'
 import MuiShift from './MuiShift'
+import React from 'react'
 
 const Autocomplete = props => {
   return <MuiShift {...props} />
