@@ -16,8 +16,9 @@ const FormFreeAutocomplete = props => {
       placeholder={label}
       error={touched && invalid}
       helperText={touched && error}
-      {...input}
+      selectedItem={input.value}
       {...custom}
+      {...input}
     />
   )
 }

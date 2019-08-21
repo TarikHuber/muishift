@@ -20,6 +20,7 @@ const SimpleForm = props => {
         <div>
           <Field
             name={`email`}
+            input={{ value: 'test' }}
             component={FormFreeAutocomplete}
             items={smallList.map(i => i.label)}
             itemToString={item => (item ? item : '')}
@@ -62,6 +63,7 @@ class Demo extends Component {
             />
             <br />
             <FreeAutocomplete
+              input={{ value: 'test' }}
               inputProps={{ style: { width: 200 }, label: 'free autocomplete' }}
               items={smallList.map(i => i.label)}
               itemToString={item => (item ? item : '')}
